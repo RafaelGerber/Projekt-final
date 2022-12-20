@@ -1,0 +1,47 @@
+{{> nav}}
+<main>
+    <div id="dia">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <canvas id="myBarGraph" width="400" height="400"></canvas>
+
+    <script>
+      var c = document.getElementById("myBarGraph");
+      var ctx = c.getContext("2d");
+
+      var viewWidth = window.innerWidth;
+      var viewHeight = window.innerHeight;
+      var chartWidth = viewWidth * 0.6;
+      var chartHeight = viewHeight * 0.5;
+
+      c.width = chartWidth;
+      c.height = chartHeight;
+
+      var myBarChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [{{dates}}],
+          datasets: [{
+            label: "Happyness",
+            backgroundColor: "rgba(142, 223, 255, 0.5)",
+            borderColor: "rgba(91, 135, 171, 1)",
+            borderWidth: 1,
+            data: [{{hvalues}}]
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  min: 0,
+                  max: 4
+
+                }
+              }
+            ]
+          }
+        }
+      });
+    </script>
+</div>
+</main>
